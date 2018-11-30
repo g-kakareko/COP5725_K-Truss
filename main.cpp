@@ -22,8 +22,36 @@ string bottom_up_truss_decomp(string filename);
 
 int main(int argc, char * argv[]) 
 {
+	cout << argc <<endl;
+	// cout << argv[1] <<endl;
+	if(argc==3)
+	{
+		if(string(argv[1])=="-1")
+		{
+			cout << "-1" <<endl;
+
+		}else if(string(argv[1])=="-2")
+		{
+			// Improved ine memory decomposition 
+			cout << "-2" <<endl;
+
+		}else if(string(argv[1])=="-3")
+		{
+			// bottom_up_truss_decomp
+			cout << "-3" <<endl;
+
+		}else
+		{
+			// Print the error message 
+		}
+
+	}else
+	{
+		// No enought parameters pring the error message
+		cout << "nothing found" <<endl;
+	}
 	
-	string path = argv[1];
+	string path = argv[2];
 	//string path = "paper_example.txt";
 	string path1 = "paper_example.txt";
 	string path2 = "paper_example-p2.txt";
