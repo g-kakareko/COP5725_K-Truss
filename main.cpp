@@ -1,3 +1,11 @@
+/***********************************************
+Grzegorz Kakareko
+Florida State University
+College of Engineering
+2525 Pottsdamer Street, Tallahassee, FL 32310
+Email: gk15b@my.fsu.edu - Phone: +1-850-570-4683
+************************************************/
+
 #include <iostream>
 #include "k_truss.h"
 #include <string>

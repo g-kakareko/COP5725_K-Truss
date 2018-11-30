@@ -1,6 +1,11 @@
-// A2DD.cpp
+/***********************************************
+Grzegorz Kakareko
+Florida State University
+College of Engineering
+2525 Pottsdamer Street, Tallahassee, FL 32310
+Email: gk15b@my.fsu.edu - Phone: +1-850-570-4683
+************************************************/
 #include "k_truss.h"
-
 k_truss::k_truss(string fn)
 {
 	path=fn;
@@ -13,6 +18,27 @@ k_truss::k_truss(string fn)
 k_truss::~k_truss(void) 
 {
    //cout << "Object is being deleted"<<" "<<path << endl;
+}
+bool k_truss::compVertex( int i,  int j) 
+{
+    return deg[i]<deg[j] || (deg[i]==deg[j] && i<j);
+}
+
+void k_truss::updateSupport(int u, int v, int delta) 
+{
+Adj[u][v]+=delta;
+Adj[v][u]+=delta;
+}   
+
+void k_truss::removeEdge(int u, int v) 
+{
+    Adj[u].erase(v);
+    Adj[v].erase(u);
+}
+
+void k_truss::orderPair(int &u, int &v) 
+{
+    if (!compVertex(u,v)) swap(u,v);
 }
 
 void k_truss::init_Adj()

@@ -1,2 +1,4 @@
 *.exe
 *.o
+data/*-decomposed.txt
+main
