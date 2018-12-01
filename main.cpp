@@ -90,37 +90,35 @@ int main(int argc, char * argv[])
 	{
 		if(string(argv[1])=="-h")
 		{
-			cout<<"main contains the execu";
-			cout<<"k_truss_dec <argument> <filename> is the program for K Truss decomposition. The basic algorithms "<<endl;
-			cout<<"are based on the “Truss Decomposition in Massive Networks” written by Jia Wang and James Cheng. "<<endl;
-			cout<<"The following arguments are available: "<<endl;
-			cout<<"-b Basic algorithm for the truss decomposition, prints the results to screen and saves them "<<endl;
-			cout<<"into filename-basic_algorithm.txt "<<endl;
-			cout<<"-i The improved algorithm for the truss decomposition. The final results are printed to the screen "<<endl;
-			cout<<"and save to filename-improved_algorithm.txt "<<endl;
-			cout<<"-bu Bottom up truss decomposition algorithm that is I/O effective. The partial results are saved "<<endl;
-			cout<<"in filename-p1/2.txt. The final results are saved in the filenam-ebottom_up.txt "<<endl;
-			cout<<"-td Top-Down Truss decomposition. The result is saved in filename-top_down.txt "<<endl;
-			cout<<"-h Help option, the current message is print to the screen"<<endl;
+			cout<<"k_truss_dec <argument> <filename> is the program for "<<endl;
+			cout<<"K Truss decomposition. The basic algorithms "<<endl;
+			cout<<"are based on the “Truss Decomposition in Massive Networks”"<<endl;
+			cout<<"written by Jia Wang and James Cheng. "<<endl;
+			cout<<"The program operates on the following arguments: "<<endl<<endl;
+
+			cout<<"\t-b Basic algorithm for the truss decomposition,"<<endl;
+			cout<<"\tprints the results to screen and saves them "<<endl;
+			cout<<"\tinto filename-basic_algorithm.txt "<<endl<<endl;
+
+			cout<<"\t-i The improved algorithm for the truss decomposition. "<<endl;
+			cout<<"\tThe final results are printed to the screen "<<endl;
+			cout<<"\tand save to filename-improved_algorithm.txt "<<endl<<endl;
+
+			cout<<"\t-bu Bottom up truss decomposition algorithm that is "<<endl;
+			cout<<"\tI/O effective. The partial results are saved "<<endl;
+			cout<<"\tin filename-p1/2.txt. The final results are saved in "<<endl;
+			cout<<"\tthe filenam-ebottom_up.txt "<<endl<<endl;
+
+			cout<<"\t-td Top-Down Truss decomposition. The result is saved "<<endl;
+			cout<<"\tin filename-top_down.txt "<<endl<<endl;
+
+			cout<<"\t-h Help option, the current message is print to the screen"<<endl;
 		}else
 		{
-			cout<<"ERROR: run the program with -h option for help"<<endl;s
+			cout<<"ERROR: run the program with -h option for help"<<endl;
 		}
 		
 	}
-	
-	// string path = argv[2];
-	// //string path = "paper_example.txt";
-	// string path1 = "paper_example.txt";
-	// string path2 = "paper_example-p2.txt";
-	// k_truss truss(path);	
-
-	// //truss.improved_truss_decomp();
-	// truss.top_down_decomp();
-
-	// k_truss truss_1(path1);
-	// cout<<"One function:"<<endl;
-	// bottom_up_truss_decomp(path);
 
 	return 0;
 }
