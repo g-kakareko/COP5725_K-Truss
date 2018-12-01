@@ -5,3 +5,12 @@ The implementation contains the following K Truss decomposition:
 * The improved version of the in memory algorithm
 * The efficient I/O algorithm Bottom up
 * The In memory top-down decomposition 
+
+|Name	|V_G | E_G |
+------|:---|:----|
+|P2P	|6.3K	|41.6K|
+|HEP	|9.9K	|52.0K|
+|Amzaon	|0.4M	|3.4M|
+|Wiki	|2.4M	|5.0M|
+|Skitter	|1.7M	|11.0M|
+|Blog	|1.0M	|12.8M|
