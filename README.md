@@ -35,5 +35,13 @@ The repository includes the ``makefile`` for the g++  std=c++11. k_truss_dec is 
 ./k_truss_dec <argument> <filename>
 ```
 The following arguments are avaliable for the execution:
+			*``-b`` Basic algorithm for the truss decomposition, prints the results to screen and saves them
+			into filename-basic_algorithm.txt 
+			*``-i`` The improved algorithm for the truss decomposition. The final results are printed to the screen
+			and save to filename-improved_algorithm.txt 
+			*``-bu`` Bottom up truss decomposition algorithm that is I/O effective. The partial results are saved 
+			in filename-p1/2.txt. The final results are saved in the filenam-ebottom_up.txt 
+			*``-td`` Top-Down Truss decomposition. The result is saved in filename-top_down.txt 
+			*``-h`` Help option, print the help message to the screen
 
 
