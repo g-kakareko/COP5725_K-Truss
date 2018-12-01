@@ -12,6 +12,7 @@ Email: gk15b@my.fsu.edu - Phone: +1-850-570-4683
 #include <cstring>
 #include <list>
 #include <algorithm>
+#include <ctime>
 using namespace std;
  
 string decompose_graph_p1(string filename);
@@ -22,43 +23,100 @@ string bottom_up_truss_decomp(string filename);
 
 int main(int argc, char * argv[]) 
 {
-	cout << argc <<endl;
-	// cout << argv[1] <<endl;
+
 	if(argc==3)
 	{
 		if(string(argv[1])=="-1")
 		{
+			// The orginal decomposition algorithm
 			cout << "-1" <<endl;
 
 		}else if(string(argv[1])=="-2")
 		{
 			// Improved ine memory decomposition 
-			cout << "-2" <<endl;
+
+			cout << "Calculating the improved truss decomposition: " <<endl;
+			string path = argv[2];
+
+			clock_t begin = clock();
+			k_truss truss(path);	
+			string name = truss.improved_truss_decomp();
+			clock_t end = clock();
+			double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+			
+			cout << "The decomposed truss was saved in: "<<name <<endl;
+			cout << "The calculations took: " << elapsed_secs <<" sec."<<endl;
 
 		}else if(string(argv[1])=="-3")
 		{
 			// bottom_up_truss_decomp
-			cout << "-3" <<endl;
+			string path = argv[2];
 
-		}else
+			clock_t begin = clock();
+			string name = bottom_up_truss_decomp(path);
+			clock_t end = clock();
+			double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+			
+			cout << "The decomposed truss was saved in: "<<name <<endl;
+			cout << "The calculations took: " << elapsed_secs <<" sec."<<endl;
+
+		}else if(string(argv[1])=="-4")
 		{
-			// Print the error message 
+			// TOP-DOWN TRUSS DECOMPOSITION
+			string path = argv[2];
+			k_truss truss(path);	
+			truss.top_down_decomp();
+		}else if(string(argv[1])=="-h")
+		{
+			cout<<"main contains the execu";
+			cout<<"k_truss_dec <argument> <filename> is the program for K Truss decomposition. The basic algorithms "<<endl;
+			cout<<"are based on the “Truss Decomposition in Massive Networks” written by Jia Wang and James Cheng. "<<endl;
+			cout<<"The following arguments are available: "<<endl;
+			cout<<"-b Basic algorithm for the truss decomposition, prints the results to screen and saves them "<<endl;
+			cout<<"into filename-basic_algorithm.txt "<<endl;
+			cout<<"-i The improved algorithm for the truss decomposition. The final results are printed to the screen "<<endl;
+			cout<<"and save to filename-improved_algorithm.txt "<<endl;
+			cout<<"-bu Bottom up truss decomposition algorithm that is I/O effective. The partial results are saved "<<endl;
+			cout<<"in filename-p1/2.txt. The final results are saved in the filenam-ebottom_up.txt "<<endl;
+			cout<<"-td Top-Down Truss decomposition. The result is saved in filename-top_down.txt "<<endl;
+			cout<<"-h Help option, the current message is print to the screen"<<endl;
+		}
+		else
+		{
+			cout<<"ERROR: run the program with -h option for help"<<endl;
 		}
 
 	}else
 	{
-		// No enought parameters pring the error message
-		cout << "nothing found" <<endl;
+		if(string(argv[1])=="-h")
+		{
+			cout<<"main contains the execu";
+			cout<<"k_truss_dec <argument> <filename> is the program for K Truss decomposition. The basic algorithms "<<endl;
+			cout<<"are based on the “Truss Decomposition in Massive Networks” written by Jia Wang and James Cheng. "<<endl;
+			cout<<"The following arguments are available: "<<endl;
+			cout<<"-b Basic algorithm for the truss decomposition, prints the results to screen and saves them "<<endl;
+			cout<<"into filename-basic_algorithm.txt "<<endl;
+			cout<<"-i The improved algorithm for the truss decomposition. The final results are printed to the screen "<<endl;
+			cout<<"and save to filename-improved_algorithm.txt "<<endl;
+			cout<<"-bu Bottom up truss decomposition algorithm that is I/O effective. The partial results are saved "<<endl;
+			cout<<"in filename-p1/2.txt. The final results are saved in the filenam-ebottom_up.txt "<<endl;
+			cout<<"-td Top-Down Truss decomposition. The result is saved in filename-top_down.txt "<<endl;
+			cout<<"-h Help option, the current message is print to the screen"<<endl;
+		}else
+		{
+			cout<<"ERROR: run the program with -h option for help"<<endl;s
+		}
+		
 	}
 	
-	string path = argv[2];
-	//string path = "paper_example.txt";
-	string path1 = "paper_example.txt";
-	string path2 = "paper_example-p2.txt";
-	k_truss truss(path);	
+	// string path = argv[2];
+	// //string path = "paper_example.txt";
+	// string path1 = "paper_example.txt";
+	// string path2 = "paper_example-p2.txt";
+	// k_truss truss(path);	
 
-	//truss.improved_truss_decomp();
-	truss.top_down_decomp();
+	// //truss.improved_truss_decomp();
+	// truss.top_down_decomp();
 
 	// k_truss truss_1(path1);
 	// cout<<"One function:"<<endl;
@@ -239,10 +297,11 @@ string compose_graph(string p1, string p2, string final_graph)
 	ofstream combined_truss;
 	combined_truss.open(final_graph);
 	int u,v,truss_cl;
+	cout << "The final decomposed graph: "<<endl;
 	while(file_in1 >> u >> v >> truss_cl)
 	{
 		// file_in >> u >> v >> truss_cl;
-		//cout << u <<" "<< v <<" "<< truss_cl <<endl;
+		cout << u <<" "<< v <<" "<< truss_cl <<endl;
 		combined_truss << u <<" "<< v <<" "<< truss_cl <<endl;
 	}
 	file_in1.close();
@@ -252,7 +311,7 @@ string compose_graph(string p1, string p2, string final_graph)
 	while(file_in2 >> u >> v >> truss_cl)
 	{
 		// file_in >> u >> v >> truss_cl;
-		//cout << u <<" "<< v <<" "<< truss_cl <<endl;
+		cout << u <<" "<< v <<" "<< truss_cl <<endl;
 		combined_truss << u <<" "<< v <<" "<< truss_cl <<endl;
 	}
 	file_in2.close();
@@ -265,30 +324,19 @@ string bottom_up_truss_decomp(string filename)
 {
 	string final_graph = filename;
 	final_graph = final_graph.substr(0, final_graph.size()-4);
-	// final_graph.pop_back(4);
-	final_graph = final_graph + "-bu_decomposed.txt";
+	final_graph = final_graph + "-bottom_up.txt";
 
 	string p1 = decompose_graph_p1(filename);
 	string p2 = decompose_graph_p2(filename);
 
-	//string p1 = "paper_example-p1.txt";
-	//string p2 = "paper_example-p2.txt";
-
 	cout<<p1<<endl;
 	k_truss truss_1(p1);
 	string filename_truss_1 = truss_1.improved_truss_decomp();
-	//cout<<"done with decomp"<<endl;
 
 	cout<<p2<<endl;
 	k_truss truss_2(p2);
 	string filename_truss_2 = truss_2.improved_truss_decomp();
-	//cout<<"done with decomp"<<endl;
 
-	//k_truss truss_1(p1);
-	//k_truss truss_2(p2);
-
-	//string filename_truss_1 = truss_1.improved_truss_decomp();
-	//string filename_truss_2 = truss_2.improved_truss_decomp();
 	string bu_truss_decomp = compose_graph(filename_truss_1, filename_truss_2, final_graph);
 	return bu_truss_decomp;
 }

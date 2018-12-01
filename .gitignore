@@ -2,3 +2,10 @@
 *.o
 data/*-decomposed.txt
 main
+data/*-improved_algorithm.txt
+data/*-p1.txt
+data/*-p2.txt
+data/*-bottom_up.txt
+k_truss_dec
+data/*-top_down.txt
+

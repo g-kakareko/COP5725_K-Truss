@@ -402,18 +402,16 @@ void k_truss::updateEdge(int u, int v, int minsup)
 
 string k_truss::improved_truss_decomp()
 {
-	
-
-	string filename_out = path_name + "-decomposed.txt";
+	string filename_out = path_name + "-improved_algorithm.txt";
 	file_out.open(filename_out);
 	init_Adj();
 	reorder();
 	countTriangles();
 	binSort();
 	trussDecomp();
-	//cout<<"after decomposition"<<endl;
 	file_out.close();
-	//print_k_truss();
+	
+	return filename_out;
 }
 
 string k_truss::top_down_decomp()
