@@ -15,9 +15,31 @@ Email: gk15b@my.fsu.edu - Phone: +1-850-570-4683
 #include <ctime>
 using namespace std;
  
+/***********************************************
+string decompose_graph_p1(string filename)- 
+Decompos the graph to p1, divide on half and 
+add the edges from the other half
+************************************************/
 string decompose_graph_p1(string filename);
+
+/***********************************************
+string decompose_graph_p2(string filename)-
+Decompose the graph to p2 and add the edges from
+p1
+************************************************/
 string decompose_graph_p2(string filename);
+
+/***********************************************
+string compose_graph(string p1, string p2)-  
+compose two decomposed graphs into one
+************************************************/
 string compose_graph(string p1, string p2);
+
+/***********************************************
+string bottom_up_truss_decomp(string filename)-
+The main function that performs the bottom up
+truss decomposition
+************************************************/
 string bottom_up_truss_decomp(string filename);
 
 
@@ -29,6 +51,7 @@ int main(int argc, char * argv[])
 		if(string(argv[1])=="-1")
 		{
 			// The orginal decomposition algorithm
+			cout << "Calculating the basic truss decomposition: " <<endl;
 			cout << "-1" <<endl;
 
 		}else if(string(argv[1])=="-2")
@@ -50,6 +73,7 @@ int main(int argc, char * argv[])
 		}else if(string(argv[1])=="-3")
 		{
 			// bottom_up_truss_decomp
+			cout << "Calculating the bottom up truss decomposition: " <<endl;
 			string path = argv[2];
 
 			clock_t begin = clock();
@@ -63,9 +87,18 @@ int main(int argc, char * argv[])
 		}else if(string(argv[1])=="-4")
 		{
 			// TOP-DOWN TRUSS DECOMPOSITION
+			cout << "Calculating the top down truss decomposition: " <<endl;
 			string path = argv[2];
+
+			clock_t begin = clock();
 			k_truss truss(path);	
-			truss.top_down_decomp();
+			string name = truss.top_down_decomp();
+			clock_t end = clock();
+			double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+
+			cout << "The decomposed truss was saved in: "<<name <<endl;
+			cout << "The calculations took: " << elapsed_secs <<" sec."<<endl;
+
 		}else if(string(argv[1])=="-h")
 		{
 			cout<<"main contains the execu";
@@ -133,7 +166,6 @@ string decompose_graph_p1(string filename)
     };
     string file_out = filename;
     file_out = file_out.substr(0, file_out.size()-4);
-	//file_out.pop_back(4);
 
 	string filename_p1 = file_out+"-p1.txt";
 	ifstream file_in;
@@ -154,7 +186,6 @@ string decompose_graph_p1(string filename)
 	for (int i=0; i<mid_m; ++i) 
 	{
 		file_in >> u >> v;
-		// cout << u << v<<endl;
 		Edge e={u,v};
 		edge_1.push_back(e);
 		edge_num_1++;
@@ -213,7 +244,6 @@ string decompose_graph_p2(string filename)
     };
     string file_out = filename;
     file_out = file_out.substr(0, file_out.size()-4);
-	//file_out.pop_back(4);
 
 	string filename_p2 = file_out+"-p2.txt";
 	ifstream file_in;
@@ -238,7 +268,6 @@ string decompose_graph_p2(string filename)
 	for (int i=mid_m+1; i<m; ++i) 
 	{
 		file_in >> u >> v;
-		// cout << u << v<<endl;
 		Edge e={u,v};
 		edge_2.push_back(e);
 		edge_num_2++;
@@ -282,7 +311,6 @@ string decompose_graph_p2(string filename)
 	for (auto const& i : edge_2) 
 	{
     	fout_p2 << i.u << ' ' << i.v<<endl;
-    	// cout << i.u << ' ' << i.v<<endl;
 	}
 	fout_p2.close();
 
@@ -298,7 +326,6 @@ string compose_graph(string p1, string p2, string final_graph)
 	cout << "The final decomposed graph: "<<endl;
 	while(file_in1 >> u >> v >> truss_cl)
 	{
-		// file_in >> u >> v >> truss_cl;
 		cout << u <<" "<< v <<" "<< truss_cl <<endl;
 		combined_truss << u <<" "<< v <<" "<< truss_cl <<endl;
 	}
@@ -308,7 +335,6 @@ string compose_graph(string p1, string p2, string final_graph)
 	file_in2.open(p2);
 	while(file_in2 >> u >> v >> truss_cl)
 	{
-		// file_in >> u >> v >> truss_cl;
 		cout << u <<" "<< v <<" "<< truss_cl <<endl;
 		combined_truss << u <<" "<< v <<" "<< truss_cl <<endl;
 	}

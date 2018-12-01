@@ -4,6 +4,9 @@ Florida State University
 College of Engineering
 2525 Pottsdamer Street, Tallahassee, FL 32310
 Email: gk15b@my.fsu.edu - Phone: +1-850-570-4683
+
+This is the header for the k_truss class, the header contains
+the function descriptions utilized in this project. 
 ************************************************/
 #ifndef K_TRUSS
 #define K_TRUSS
@@ -21,6 +24,7 @@ using namespace std;
 
 class k_truss
 {
+    // struct Edge - Container to hold the vertexes of an Edge
     struct Edge 
     {
         int u,v;
@@ -31,44 +35,138 @@ class k_truss
         }
     };
 
-    string filename;
-    ofstream file_out;
-    string infile, outfile;
-    string path;
-    string path_name;
+    ofstream file_out;              // path to the file to be saved
+    string path;                    // holds the path for the file
+    string path_name;               // only the name without the .txt
 
-    int n, m;
-    vector<int> mapto;
-    vector<int> deg, bin;
-    vector<Edge> binEdge;
-    vector<vector<int>> A;
-    vector<map<int,int>> Adj, pos;
+    int n, m;                       // vetexes reading from the file
+    vector<int> mapto;              // container that is used for sorting
+    vector<int> deg, bin;           // holds the degrees for the vertexes 
+    vector<Edge> binEdge;           // container for sorting
+    vector<vector<int>> A;          // container for couting triangles 
+    vector<map<int,int>> Adj, pos;  // Adjusted matrix for initialization
 
-    int cntClass[1000];
-    int gx;
-    int gy;
+    int cntClass[1000];             // holds the classes for the 
+
+    /***********************************************
+    void init_Adj()- Initialize Adj, adjustment matrix
+    ************************************************/
     void init_Adj();
-    bool compVertex( int i,  int j);
+
+    /***********************************************
+    bool compVertex(int i,  int j)- check, which 
+    vetex is greter
+    ************************************************/
+    bool compVertex(int i,  int j);
+
+    /***********************************************
+    void updateSupport(int u, int v, int delta)- 
+    Update Adj, matrix adding the degrees 
+    ************************************************/
     void updateSupport(int u, int v, int delta);
+
+    /***********************************************
+    void printClass(int u, int v, int cls)-
+    Prints the the u, v, cls; for the edge
+    ************************************************/
     void printClass(int u, int v, int cls);
+
+    /***********************************************
+    void removeEdge(int u, int v)
+    Removes the edge from the Adj matrix
+    ************************************************/
     void removeEdge(int u, int v);
+
+    /***********************************************
+    void orderPair(int &u, int &v)-
+    swap the vertexes in order
+    ************************************************/
     void orderPair(int &u, int &v);
-    int getSum();
+
+    /***********************************************
+    void intersect(const vector<int> &a, const vector<int> &b, vector<int> &c)-
+    Checks which edges intersect and save them in c
+    ************************************************/
     void intersect(const vector<int> &a, const vector<int> &b, vector<int> &c);
-    void init_Adj_pub();
+
+    /***********************************************
+    void reorder()-
+    Sort the edges in the asceending order
+    ************************************************/
     void reorder();
+
+    /***********************************************
+    void countTriangles()-
+    counts triangles for the each edge following
+    the improved algorithm
+    ************************************************/
     void countTriangles();
+
+    /***********************************************
+    void binSort()-
+    Binary sorts edges based on the triangle number
+    ************************************************/
     void binSort();
+
+    /***********************************************
+    void trussDecomp()-
+    The main function for the improved algorithm
+    for the truss decomposition
+    ************************************************/
     void trussDecomp();
+
+    /***********************************************
+    void updateEdge(int u, int v, int minsup)-
+    Updates the number of triangles after deleting
+    the edges 
+    ************************************************/
     void updateEdge(int u, int v, int minsup);
-    void print_k_truss();
-public:
-    k_truss(string fn);
-    ~k_truss(); 
-    string improved_truss_decomp();    
-    string top_down_decomp();
+
+    /***********************************************
+    void binSort_top_down()-
+    The modyfied Bin sort used for top down decomposition
+    ************************************************/
     void binSort_top_down();
+
+    /***********************************************
+    void trussDecomp_top_down()-
+    The main function for the truss top down decomposition
+    ************************************************/
     void trussDecomp_top_down();
+    
+public:
+    /***********************************************
+    k_truss(string fn);
+    Constructor for the class that initialize the path
+    ************************************************/
+    k_truss(string fn);
+
+    /***********************************************
+    ~k_truss(); 
+    Destructor, that does nothing, no dynamicly 
+    alocated matrix
+    ************************************************/
+    ~k_truss(); 
+
+    /***********************************************
+    string basic_truss_decomp();  
+    The main function for the basic algorithm for truss
+    decomposition
+    ************************************************/
+    string basic_truss_decomp();  
+
+    /***********************************************
+    string improved_truss_decomp();
+    The main function for the improved truss decomposition
+    ************************************************/  
+    string improved_truss_decomp();
+
+    /***********************************************
+    string top_down_decomp();
+    The main function for the top down truss decomposition
+    ************************************************/  
+    string top_down_decomp();
+    
 
 };
 #endif
