@@ -14,11 +14,13 @@ The input files need to follow the standart described below
 (i+1)th line	u v	// ith edge (u,v)
 ``
 #### Output
+```
 m lines containing:
 u v c	// (u,v) belongs to c-class,
 		meaning it's in c-truss but not (c+1)-truss.
-    
+``` 
 Table 1. Graph examples
+
 |Name	|V_G | E_G |
 ------|:---|:----|
 |P2P	|6.3K	|41.6K|
