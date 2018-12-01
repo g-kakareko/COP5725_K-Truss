@@ -7,7 +7,7 @@ The implementation contains the following K Truss decomposition:
 * The In memory top-down decomposition 
 
 The data folder contains the graph examples described in Table 1.
-The input files need to follow the standart described below
+The input files need to follow the standard described below
 #### Input
 ``
 1st line:	n m	// #vertices, #edges <Enter>
@@ -15,7 +15,7 @@ The input files need to follow the standart described below
 ``
 #### Output
 ```
-each line contains edge Ktruss description, where:
+each line contains edge K-truss description, where:
 u v c	// (u,v) edge that belongs to c-class, (not (c+1)-truss).
 ``` 
 #### Table 1. Graph examples 
