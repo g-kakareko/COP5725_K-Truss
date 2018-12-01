@@ -1,5 +1,5 @@
 # COP5725_K-Truss
-This repository contains the final project for the [COP5725 Advanced Database Systems](http://www.cs.fsu.edu/~zhao/cop5725/project.html). The final project was the implementation of the K-Truss decomposition algorithms described in [Truss Decomposition in Massive Networks](http://vldb.org/pvldb/vol5/p812_jiawang_vldb2012.pdf).
+This repository contains the final project for the [COP5725 Advanced Database Systems](http://www.cs.fsu.edu/~zhao/cop5725/project.html). The final project was the implementation of the K-Truss decomposition algorithms described in [Truss Decomposition in Massive Networks](http://vldb.org/pvldb/vol5/p812_jiawang_vldb2012.pdf). The improved algorithm appliance is based on the orginal [Wang code](https://github.com/cntswj/truss-decomposition)
 The implementation contains the following K Truss decomposition:
 * The basic decomposition algorithm proposed by [Cohen](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.505.7006&rep=rep1&type=pdf)
 * The improved version of the in memory algorithm
@@ -28,3 +28,5 @@ Table 1. Graph examples
 |Wiki	|2.4M	|5.0M|
 |Skitter	|1.7M	|11.0M|
 |Blog	|1.0M	|12.8M|
+
+#### How to run the code
