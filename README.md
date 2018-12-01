@@ -10,7 +10,7 @@ The data folder contains the graph examples described in Table 1.
 The input files need to follow the standart described below
 #### Input
 ``
-1st line:	n m	// #vertices, #edges
+1st line:	n m	// #vertices, #edges <Enter>
 (i+1)th line	u v	// ith edge u v vertexes 
 ``
 #### Output
@@ -30,3 +30,10 @@ u v c	// (u,v) edge that belongs to c-class, (not (c+1)-truss).
 |Blog	|1.0M	|12.8M|
 
 #### How to run the code
+The repository includes the ``makefile`` for the g++  std=c++11. k_truss_dec is the executable that should be run in the following order:
+```
+./k_truss_dec <argument> <filename>
+```
+The following arguments are avaliable for the execution:
+
+
