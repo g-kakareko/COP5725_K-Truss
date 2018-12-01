@@ -6,6 +6,19 @@ The implementation contains the following K Truss decomposition:
 * The efficient I/O algorithm Bottom up
 * The In memory top-down decomposition 
 
+The data folder contains the graph examples described in Table 1.
+The input files need to follow the standart described below
+#### Input
+``
+1st line:	n m	// #vertices, #edges
+(i+1)th line	u v	// ith edge (u,v)
+``
+#### Output
+m lines containing:
+u v c	// (u,v) belongs to c-class,
+		meaning it's in c-truss but not (c+1)-truss.
+    
+Table 1. Graph examples
 |Name	|V_G | E_G |
 ------|:---|:----|
 |P2P	|6.3K	|41.6K|
