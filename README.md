@@ -18,7 +18,7 @@ The input files need to follow the standart described below
 each line contains edge Ktruss description, where:
 u v c	// (u,v) edge that belongs to c-class, (not (c+1)-truss).
 ``` 
-Table 1. Graph examples 
+#### Table 1. Graph examples 
 
 |Name	|V_G | E_G |
 ------|:---|:----|
