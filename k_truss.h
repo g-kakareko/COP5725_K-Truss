@@ -20,11 +20,13 @@ the function descriptions utilized in this project.
 #include <algorithm>
 #include <cstring>
 #include <vector>
+#include <list>
 using namespace std;
 
 class k_truss
 {
-    // struct Edge - Container to hold the vertexes of an Edge
+    // struct Edge - Container to hold the vertexes of an 
+    // Edge for an improved algorithm
     struct Edge 
     {
         int u,v;
@@ -34,6 +36,19 @@ class k_truss
             return e1.u<e2.u || (e1.u==e2.u && e1.v<e2.v);
         }
     };
+
+    // struct Edge - Container to hold the vertexes of an Edge
+    // for the basic
+    struct Edge_basic 
+    {
+        int u,v,d;
+
+        friend bool operator<(Edge_basic e1, Edge_basic e2) 
+        {
+            return e1.d<e2.d || (e1.d==e2.d && e1.d<e2.d);
+        }
+    };
+    list<Edge_basic> list_Edge_basic; 
 
     ofstream file_out;              // path to the file to be saved
     string path;                    // holds the path for the file
@@ -133,6 +148,28 @@ class k_truss
     The main function for the truss top down decomposition
     ************************************************/
     void trussDecomp_top_down();
+
+    /***********************************************
+    void trussDecomp_basic()-
+    The function for the truss decomposition basic
+    algorithm, using the list_Edge_basic
+    ************************************************/
+    void trussDecomp_basic();
+
+    /***********************************************
+    void update_list_Edge_basic();
+    Functions updates the number of triangles for
+    each edge after the decomposition
+    ************************************************/
+    void update_list_Edge_basic();
+
+    /***********************************************
+    void print_list_Edge_basic()-
+    utilities function only for debuging to print
+    the current list of edges
+    ************************************************/
+    void print_list_Edge_basic();
+
     
 public:
     /***********************************************

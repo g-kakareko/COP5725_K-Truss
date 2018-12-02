@@ -139,7 +139,8 @@ void k_truss::countTriangles()
 			
 			vector<int> common;
 			intersect(A[u], A[v], common);
-			for (unsigned i=0; i<common.size(); ++i) {
+			for (unsigned i=0; i<common.size(); ++i) 
+			{
 				int w=mapto[common[i]];
 				++nDeltas;
 				updateSupport(u,v,1);
@@ -149,7 +150,7 @@ void k_truss::countTriangles()
 			A[u].push_back(vi);
 		}
 	}
-	cout << nDeltas << "triangles found.\n";
+	cout << nDeltas << " triangles found.\n";
 }
 
 void k_truss::binSort() 
@@ -169,6 +170,7 @@ void k_truss::binSort()
 			int sup=it->second;
 			if (sup==0) 
 			{
+				// Removing zeros, do not matter
 				printClass(u,v,2);
 				removeEdge(u,v);
 				continue;
@@ -199,6 +201,7 @@ void k_truss::binSort()
 			int v=it->first;
 			if (!compVertex(u,v)) 
 				continue;
+
 			int sup=it->second;
 			Edge e={u,v};
 			int &b=bin[sup];
@@ -300,6 +303,72 @@ void k_truss::trussDecomp()
 		removeEdge(u,v);
 	}
 }
+void k_truss::print_list_Edge_basic()
+{
+	for (auto v : list_Edge_basic)
+	{
+        cout<<"Sorted:"<<v.u <<' '<<v.v<<' ' << v.d << endl;
+	}	
+}
+
+void k_truss::update_list_Edge_basic() 
+{
+	list_Edge_basic.clear();
+	for (int u=0; u<n; ++u) 
+	{
+		auto tadj = Adj[u];
+		// cout<<"------"<<endl;
+		for (auto it=tadj.begin(); it!=tadj.end(); ++it) 
+		{
+			int v=it->first;
+			int sup=it->second;
+			// cout<<"v, sup: "<<u<<' '<<v<<' '<<sup<<endl;
+			Edge_basic ith_edge = {u, v, sup};
+			list_Edge_basic.push_back(ith_edge);
+		}
+	}
+	list_Edge_basic.sort();
+}
+
+void k_truss::trussDecomp_basic() 
+{
+
+	update_list_Edge_basic();
+	// print_list_Edge_basic();
+
+	int s = 0;
+	while(!list_Edge_basic.empty())
+	{
+		
+		Edge_basic front =  list_Edge_basic.front();
+		int u=binEdge[s].u;
+		int v=binEdge[s].v;
+
+		orderPair(u,v);
+		int supuv=Adj[u][v];
+		printClass(u,v,supuv+2);
+		int nfound=0;
+		for (auto it=Adj[u].begin(); it!=Adj[u].end(); ++it) 
+		{
+			if (nfound==supuv) 
+				break;
+			int w=it->first;
+			if (w==v) 
+				continue;
+			if (Adj[v].find(w)!=Adj[v].end()) 
+			{
+				++nfound;
+				updateEdge(u,w,supuv);
+				updateEdge(v,w,supuv);
+			}
+		}
+		removeEdge(u,v);
+		update_list_Edge_basic();
+		// cout<<"size: "<<list_Edge_basic.size()<<endl;
+		// print_list_Edge_basic();
+		s++;
+	}
+}
 
 void k_truss::trussDecomp_top_down() 
 {
@@ -333,12 +402,14 @@ void k_truss::updateEdge(int u, int v, int minsup)
 {
 	orderPair(u,v);
 	int sup=Adj[u][v];
-	if (sup<=minsup) return;
+	if (sup<=minsup) 
+		return;
 	int p=pos[u][v];
 	int posbin=bin[sup];
 	Edge se=binEdge[posbin];
 	Edge e={u,v};
-	if (p!=posbin) {
+	if (p!=posbin) 
+	{
 		pos[u][v]=posbin;
 		pos[se.u][se.v]=p;
 		binEdge[p]=se;
@@ -357,6 +428,20 @@ string k_truss::improved_truss_decomp()
 	countTriangles();
 	binSort();
 	trussDecomp();
+	file_out.close();
+
+	return filename_out;
+}
+
+string k_truss::basic_truss_decomp()
+{
+	string filename_out = path_name + "-basic_algorithm.txt";
+	file_out.open(filename_out);
+	init_Adj();
+	reorder();
+	countTriangles();
+	binSort();
+	trussDecomp_basic();
 	file_out.close();
 
 	return filename_out;
