@@ -19,6 +19,9 @@ The input files need to follow the standard described below.
 #### Output
 ```
 each line contains edge K-truss description, where:
+``
+<br />
+``
 u v c	// (u,v) edge that belongs to c-class, (not (c+1)-truss).
 ``` 
 #### Table 1. Graph examples 
