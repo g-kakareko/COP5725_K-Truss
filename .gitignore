@@ -8,4 +8,6 @@ data/*-p2.txt
 data/*-bottom_up.txt
 k_truss_dec
 data/*-top_down.txt
+data/WikiTalk.txt
+data/amazon-meta.txt
 
