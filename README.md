@@ -6,11 +6,11 @@ The implementation contains the following K Truss decomposition:
 * The efficient I/O algorithm Bottom up
 * The In memory top-down decomposition 
 
-The data folder contains the graph examples described in Table 1.
+The data folder contains the graph examples of the smaller networks described in Table 1. All the networks described in the [paper](http://vldb.org/pvldb/vol5/p812_jiawang_vldb2012.pdf) are avaliable [here](https://snap.stanford.edu/data/)
 The input files need to follow the standard described below
 #### Input
 ``
-1st line:	n m	// #vertices, #edges <Enter>
+1st line:	n m	// #vertices, #edges 
 (i+1)th line	u v	// ith edge u v vertexes 
 ``
 #### Output
