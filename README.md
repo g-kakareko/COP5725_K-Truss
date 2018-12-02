@@ -17,23 +17,19 @@ The input files need to follow the standard described below.
 (i+1)th line	u v	// ith edge u v vertexes 
 ``
 #### Output
-```
+``
 each line contains edge K-truss description, where:
 ``
 <br />
 ``
 u v c	// (u,v) edge that belongs to c-class, (not (c+1)-truss).
-``` 
+`` 
 #### Table 1. Graph examples 
 
 |Name	|V_G | E_G |
 ------|:---|:----|
 |P2P	|6.3K	|41.6K|
 |HEP	|9.9K	|52.0K|
-|Amzaon	|0.4M	|3.4M|
-|Wiki	|2.4M	|5.0M|
-|Skitter	|1.7M	|11.0M|
-|Blog	|1.0M	|12.8M|
 
 #### How to run the code
 The repository includes the ``makefile`` for the g++  std=c++11. k_truss_dec is the executable that should be run in the following order:
