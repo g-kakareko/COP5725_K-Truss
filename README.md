@@ -10,7 +10,10 @@ The data folder contains the graph examples of the smaller networks described in
 The input files need to follow the standard described below.
 #### Input
 ``
-1st line:	n m	// #vertices, #edges <br />
+1st line:	n m	// #vertices, #edges 
+``
+<br />
+``
 (i+1)th line	u v	// ith edge u v vertexes 
 ``
 #### Output
