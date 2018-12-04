@@ -48,8 +48,9 @@ int main(int argc, char * argv[])
 
 	if(argc==3)
 	{
-		if(string(argv[1])=="-1")
+		if(string(argv[1])=="-b")
 		{
+			// -1
 			// The orginal decomposition algorithm
 			cout << "Calculating the basic truss decomposition: " <<endl;
 			string path = argv[2];
@@ -63,8 +64,9 @@ int main(int argc, char * argv[])
 			cout << "The decomposed truss was saved in: "<<name <<endl;
 			cout << "The calculations took: " << elapsed_secs <<" sec."<<endl;
 
-		}else if(string(argv[1])=="-2")
+		}else if(string(argv[1])=="-i")
 		{
+			// -2
 			// Improved ine memory decomposition 
 
 			cout << "Calculating the improved truss decomposition: " <<endl;
@@ -79,8 +81,9 @@ int main(int argc, char * argv[])
 			cout << "The decomposed truss was saved in: "<<name <<endl;
 			cout << "The calculations took: " << elapsed_secs <<" sec."<<endl;
 
-		}else if(string(argv[1])=="-3")
+		}else if(string(argv[1])=="-bu")
 		{
+			// -3
 			// bottom_up_truss_decomp
 			cout << "Calculating the bottom up truss decomposition: " <<endl;
 			string path = argv[2];
@@ -93,8 +96,9 @@ int main(int argc, char * argv[])
 			cout << "The decomposed truss was saved in: "<<name <<endl;
 			cout << "The calculations took: " << elapsed_secs <<" sec."<<endl;
 
-		}else if(string(argv[1])=="-4")
+		}else if(string(argv[1])=="-td")
 		{
+			// -4
 			// TOP-DOWN TRUSS DECOMPOSITION
 			cout << "Calculating the top down truss decomposition: " <<endl;
 			string path = argv[2];
